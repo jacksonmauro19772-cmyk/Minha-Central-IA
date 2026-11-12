@@ -51,7 +51,8 @@ footer{font-size:12px;color:#778196;padding:14px 2px}
 <label for="question">O que você precisa?</label><textarea id="question" placeholder="Digite sua dúvida, ideia ou tarefa..."></textarea>
 <label for="mode">Como deseja consultar?</label>
 <select id="mode"><option value="all">Abrir as três principais IAs</option><option value="chatgpt">Somente ChatGPT</option><option value="claude">Somente Claude</option><option value="gemini">Somente Gemini</option><option value="perplexity">Perplexity para pesquisar com fontes</option><option value="notebooklm">NotebookLM para consultar materiais</option><option value="copilot">Copilot</option></select>
-<div class="actions"><button onclick="sendToAI()">Abrir assistente(s)</button><button class="secondary" onclick="saveNote()">Salvar anotação neste aparelho</button></div>
+<div class="actions"><button type="button" onclick="sendToAI()">Consultar</button><button class="secondary" onclick="saveNote()">Salvar anotação neste aparelho</button></div>
+<p class="hint">Ao tocar em Consultar, a Central abre a IA escolhida acima e tenta copiar sua pergunta para você colar na conversa. As respostas ainda acontecem dentro do site da IA.</p>
 <label>Anotações salvas neste aparelho</label><div id="saved" class="answer">Nenhuma anotação salva ainda.</div>
 <p class="hint">Nesta versão, o texto é salvo apenas neste aparelho e as IAs abrem em seus sites oficiais. Não há envio automático nem sincronização entre aparelhos ainda.</p>
 </section>
@@ -72,7 +73,7 @@ function sendToAI(){let q=document.getElementById('question').value.trim();if(!q
 let m=document.getElementById('mode').value;let keys=m==='all'?['chatgpt','claude','gemini']:[m];
 keys.forEach(k=>window.open(destinations[k],'_blank','noopener'));
 try{navigator.clipboard.writeText(q)}catch(e){}
-alert('Os assistentes foram abertos. Se necessário, copie sua pergunta e cole em cada conversa.')}
+alert('A IA escolhida foi aberta. Sua pergunta foi copiada quando o navegador permitiu; cole o texto na conversa da IA para receber a resposta.')}
 function saveNote(){let q=document.getElementById('question').value.trim();if(!q){alert('Digite uma anotação primeiro.');return}
 let all=JSON.parse(localStorage.getItem('central-notes')||'[]');all.unshift({area:areas[current][0],text:q,date:new Date().toLocaleString('pt-BR')});localStorage.setItem('central-notes',JSON.stringify(all));renderSaved();alert('Anotação salva neste aparelho.')}
 function renderSaved(){let all=JSON.parse(localStorage.getItem('central-notes')||'[]').filter(x=>x.area===areas[current][0]);document.getElementById('saved').textContent=all.length?all.map(x=>x.date+' — '+x.text).join('\\n\\n'):'Nenhuma anotação salva ainda.'}
