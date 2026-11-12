@@ -1,0 +1,20 @@
+MINHA CENTRAL IA — COMO PUBLICAR
+
+Esta pasta contém o primeiro pacote do aplicativo web instalável (PWA).
+
+Para ter um endereço fixo e atualizar sem baixar arquivos no celular:
+1. Crie ou entre em uma conta GitHub.
+2. Crie um repositório público chamado minha-central-ia.
+3. Envie TODOS os arquivos desta pasta para a raiz do repositório.
+4. No GitHub, abra Settings > Pages.
+5. Em Build and deployment, selecione Deploy from a branch; escolha main e / (root); salve.
+6. Aguarde o GitHub mostrar o endereço publicado em Settings > Pages.
+7. Abra esse endereço no Samsung Internet ou Chrome e use o menu do navegador > Adicionar à tela inicial / Instalar aplicativo.
+
+Para atualizar depois, substitua os arquivos no mesmo repositório. O endereço permanece o mesmo.
+
+Observações:
+- Publicação requer uma conta GitHub e uma ação inicial sua; não foi publicada automaticamente.
+- A central abre os sites oficiais das IAs. Ela não integra nem automatiza as respostas entre elas.
+- As anotações desta versão ficam no armazenamento local do navegador e não sincronizam entre aparelhos.
+- Não coloque dados pessoais sensíveis ou informações confidenciais.

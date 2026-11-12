@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172033">
+<meta name="description" content="Sua central pessoal de estudos, projetos e organização.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Minha Central IA</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172033;background:#f3f5f8}
+*{box-sizing:border-box}body{margin:0;padding:22px}.wrap{max-width:960px;margin:auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
+h1{font-size:clamp(27px,5vw,38px);margin:0}h2{font-size:20px;margin:0 0 12px}
+p{color:#667085;line-height:1.5;margin:6px 0}.pill{background:#e7eef9;color:#315b98;padding:7px 12px;border-radius:99px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+.card{background:white;border:1px solid #e1e6ef;border-radius:18px;padding:19px;margin:13px 0;box-shadow:0 7px 25px #1b29400a}
+.tile{display:block;text-align:left;color:inherit;text-decoration:none;background:white;border:1px solid #e1e6ef;border-radius:16px;padding:18px;cursor:pointer}
+.tile:hover{border-color:#9aafd1}.emoji{font-size:27px}.tile b{display:block;margin:8px 0 4px}
+textarea,select{width:100%;padding:13px;border:1px solid #d6deea;border-radius:11px;font:inherit;background:white}
+textarea{min-height:125px;resize:vertical}label{display:block;font-weight:650;margin:13px 0 8px}
+button,.btn{display:inline-block;border:0;border-radius:11px;background:#263d65;color:white;padding:12px 16px;font:inherit;font-weight:650;text-decoration:none;cursor:pointer}
+.secondary{background:#edf1f7;color:#263d65}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}
+.hidden{display:none}.hint{font-size:13px}.answer{background:#f7f9fc;border:1px dashed #cbd4e2;border-radius:12px;padding:14px;min-height:60px;white-space:pre-wrap}
+footer{font-size:12px;color:#778196;padding:14px 2px}
+@media(max-width:520px){body{padding:15px}header{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body><main class="wrap">
+<header><div><h1>✨ Minha Central IA</h1><p>Um só lugar para estudar, criar e organizar sua rotina.</p></div><span class="pill">Versão inicial</span></header>
+<section id="home">
+<div class="grid">
+<button class="tile" onclick="openArea('direito')"><span class="emoji">⚖️</span><b>Direito</b><p>Faculdade, dúvidas, leis, casos e simulados.</p></button>
+<button class="tile" onclick="openArea('3d')"><span class="emoji">🧩</span><b>Impressão 3D</b><p>Ideias, medidas, modelagem e projetos.</p></button>
+<button class="tile" onclick="openArea('estudos')"><span class="emoji">📚</span><b>Estudos</b><p>Resumos, revisões e organização de matérias.</p></button>
+<button class="tile" onclick="openArea('pessoal')"><span class="emoji">🌿</span><b>Vida pessoal</b><p>Planejamento, dúvidas e tarefas do dia a dia.</p></button>
+</div>
+<section class="card"><h2>Assistentes disponíveis</h2><div class="grid">
+<a class="tile" href="https://chatgpt.com/" target="_blank" rel="noopener"><b>ChatGPT</b><p>Explicações, planejamento e criação.</p></a>
+<a class="tile" href="https://claude.ai/" target="_blank" rel="noopener"><b>Claude</b><p>Análise de textos e revisão.</p></a>
+<a class="tile" href="https://gemini.google.com/" target="_blank" rel="noopener"><b>Gemini</b><p>Pesquisa e ferramentas Google.</p></a>
+<a class="tile" href="https://www.perplexity.ai/" target="_blank" rel="noopener"><b>Perplexity</b><p>Pesquisa na web com referências.</p></a>
+<a class="tile" href="https://notebooklm.google.com/" target="_blank" rel="noopener"><b>NotebookLM</b><p>Estudo com seus documentos.</p></a>
+<a class="tile" href="https://copilot.microsoft.com/" target="_blank" rel="noopener"><b>Copilot</b><p>Apoio à produtividade.</p></a>
+</div></section>
+</section>
+<section id="workspace" class="card hidden">
+<button class="secondary" onclick="goHome()">← Voltar ao início</button>
+<h2 id="areaTitle" style="margin-top:16px">Direito</h2><p id="areaDesc"></p>
+<label for="question">O que você precisa?</label><textarea id="question" placeholder="Digite sua dúvida, ideia ou tarefa..."></textarea>
+<label for="mode">Como deseja consultar?</label>
+<select id="mode"><option value="all">Abrir as três principais IAs</option><option value="chatgpt">Somente ChatGPT</option><option value="claude">Somente Claude</option><option value="gemini">Somente Gemini</option><option value="perplexity">Perplexity para pesquisar com fontes</option><option value="notebooklm">NotebookLM para consultar materiais</option><option value="copilot">Copilot</option></select>
+<div class="actions"><button onclick="sendToAI()">Abrir assistente(s)</button><button class="secondary" onclick="saveNote()">Salvar anotação neste aparelho</button></div>
+<label>Anotações salvas neste aparelho</label><div id="saved" class="answer">Nenhuma anotação salva ainda.</div>
+<p class="hint">Nesta versão, o texto é salvo apenas neste aparelho e as IAs abrem em seus sites oficiais. Não há envio automático nem sincronização entre aparelhos ainda.</p>
+</section>
+<footer>Use as respostas das IAs como apoio. Para assuntos jurídicos, confira legislação e jurisprudência em fontes oficiais.</footer>
+</main>
+<script>
+const areas={
+ direito:['Direito','Estudos da faculdade, dúvidas jurídicas, resumos, simulados e análise de casos.'],
+ '3d':['Impressão 3D','Organize ideias, dimensões, materiais, modelagem e preparação de projetos.'],
+ estudos:['Estudos','Resumos, explicações, exercícios e planejamento de estudos.'],
+ pessoal:['Vida pessoal','Organização da rotina, planejamento e dúvidas do cotidiano.']
+};
+let current='direito';
+function openArea(id){current=id;document.getElementById('home').classList.add('hidden');document.getElementById('workspace').classList.remove('hidden');document.getElementById('areaTitle').textContent=areas[id][0];document.getElementById('areaDesc').textContent=areas[id][1];document.getElementById('question').value='';renderSaved();window.scrollTo(0,0)}
+function goHome(){document.getElementById('workspace').classList.add('hidden');document.getElementById('home').classList.remove('hidden');window.scrollTo(0,0)}
+const destinations={chatgpt:'https://chatgpt.com/',claude:'https://claude.ai/',gemini:'https://gemini.google.com/',perplexity:'https://www.perplexity.ai/',notebooklm:'https://notebooklm.google.com/',copilot:'https://copilot.microsoft.com/'};
+function sendToAI(){let q=document.getElementById('question').value.trim();if(!q){alert('Digite sua dúvida ou tarefa primeiro.');return}
+let m=document.getElementById('mode').value;let keys=m==='all'?['chatgpt','claude','gemini']:[m];
+keys.forEach(k=>window.open(destinations[k],'_blank','noopener'));
+try{navigator.clipboard.writeText(q)}catch(e){}
+alert('Os assistentes foram abertos. Se necessário, copie sua pergunta e cole em cada conversa.')}
+function saveNote(){let q=document.getElementById('question').value.trim();if(!q){alert('Digite uma anotação primeiro.');return}
+let all=JSON.parse(localStorage.getItem('central-notes')||'[]');all.unshift({area:areas[current][0],text:q,date:new Date().toLocaleString('pt-BR')});localStorage.setItem('central-notes',JSON.stringify(all));renderSaved();alert('Anotação salva neste aparelho.')}
+function renderSaved(){let all=JSON.parse(localStorage.getItem('central-notes')||'[]').filter(x=>x.area===areas[current][0]);document.getElementById('saved').textContent=all.length?all.map(x=>x.date+' — '+x.text).join('\\n\\n'):'Nenhuma anotação salva ainda.'}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
+</script></body></html>
